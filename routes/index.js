@@ -11,7 +11,12 @@ router.get('/', function (req, res, next) {
 router.get('/stylesheets/style.css', (req, res, next) => {
     res.sendFile('./stylesheets/style.css', { root: __dirname + '/../public/'})
 })
-router.get('/tweets', );
+
+router.get('/users/:name', function(req, res, next) {
+  let tweetsForName = tweetBank.find({name: req.params.name})
+  res.render( 'index', { tweets: tweetsForName } );
+
+})
 
 router.post('/tweets', (req, res) => {
     
